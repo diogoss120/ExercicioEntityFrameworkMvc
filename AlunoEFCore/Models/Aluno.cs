@@ -32,14 +32,8 @@ namespace AlunoTeste.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Nascimento { get; set; }
 
-        [Display(Name = "Foto")]
-        [Required(ErrorMessage = "A foto deve ser informado")]
-        [StringLength(150)]
         public string Foto { get; set; }
 
-        [Display(Name = "Texto")]
-        [Required(ErrorMessage = "O texto deve ser informado")]
-        [StringLength(50)]
         public string Texto { get; set; }
 
         public Socio Socio { get; set; }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlunoTeste.Models
 {
+    [Table("Alunos")]
     public class Aluno
     {
         public int Id { get; set; }
@@ -29,5 +31,17 @@ namespace AlunoTeste.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Nascimento { get; set; }
+
+        [Display(Name = "Foto")]
+        [Required(ErrorMessage = "A foto deve ser informado")]
+        [StringLength(150)]
+        public string Foto { get; set; }
+
+        [Display(Name = "Texto")]
+        [Required(ErrorMessage = "O texto deve ser informado")]
+        [StringLength(50)]
+        public string Texto { get; set; }
+
+        public Socio Socio { get; set; }
     }
 }

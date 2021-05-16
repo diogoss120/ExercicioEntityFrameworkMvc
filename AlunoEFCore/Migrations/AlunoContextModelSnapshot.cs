@@ -27,6 +27,11 @@ namespace ExercicioEntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Foto")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
                     b.Property<DateTime>("Nascimento")
                         .HasColumnType("datetime(6)");
 
@@ -39,9 +44,45 @@ namespace ExercicioEntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("SocioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("SocioId");
+
                     b.ToTable("Alunos");
+                });
+
+            modelBuilder.Entity("AlunoTeste.Models.Socio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("DuracaoEmMeses")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TaxaDesconto")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Socios");
+                });
+
+            modelBuilder.Entity("AlunoTeste.Models.Aluno", b =>
+                {
+                    b.HasOne("AlunoTeste.Models.Socio", "Socio")
+                        .WithMany()
+                        .HasForeignKey("SocioId");
+
+                    b.Navigation("Socio");
                 });
 #pragma warning restore 612, 618
         }

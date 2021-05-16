@@ -10,8 +10,9 @@ namespace AlunoTeste.Data
     public class AlunoContext : DbContext
     {
         public AlunoContext(DbContextOptions<AlunoContext> options) : base(options)
-        {}
+        { }
 
         public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Socio> Socios { get; set; }
     }
 }

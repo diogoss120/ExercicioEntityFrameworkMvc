@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using AlunoTeste.Data;
 using AlunoTeste.Models;
 
-namespace ExercicioEntityFramework.Controllers
+namespace AlunoTeste.Controllers
 {
     public class AlunosController : Controller
     {

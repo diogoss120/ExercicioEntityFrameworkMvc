@@ -66,6 +66,7 @@ namespace ExercicioEntityFramework.Controllers
         }
 
         // GET: Curso/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,12 +87,8 @@ namespace ExercicioEntityFramework.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo")] Curso curso)
+        public async Task<IActionResult> Edit(Curso curso)
         {
-            if (id != curso.CursoId)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {

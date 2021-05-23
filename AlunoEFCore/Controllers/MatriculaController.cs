@@ -37,12 +37,12 @@ namespace ExercicioEntityFramework.Controllers
             }
 
             var matricula = _context.Matriculas.Where(m => m.AlunoId == id)
-                .Include(m => m.Curso); //.Distinct();
+                .Include(m => m.Curso).Include(m => m.Aluno); //.Distinct();
             if (matricula == null)
             {
                 return NotFound();
             }
-
+            ViewBag.NomeAluno = matricula.Select(a => a.Aluno.Nome).First();
             return View(matricula);
         }
 

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h4>@ViewBag.NomeAluno</h4>
 
 <table class="table">
     <thead>
@@ -26,6 +26,10 @@
             <tr>
                 <td> @matricula.Curso.Titulo</td>
                 <td> @matricula.Nota</td>
+                <td>
+                    <a asp-controller="Matricula" asp-action="Edit" asp-route-id="@matricula.Id">Edit</a> | 
+                    <a asp-controller="Matricula" asp-action="Delete" asp-route-id="@matricula.Id">Delete</a>
+                </td>
             </tr>
         }
 

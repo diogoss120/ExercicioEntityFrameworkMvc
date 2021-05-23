@@ -10,11 +10,11 @@ using AlunoTeste.Models;
 
 namespace AlunoTeste.Controllers
 {
-    public class AlunosController : Controller
+    public class AlunoController : Controller
     {
         private readonly AlunoContext _context;
 
-        public AlunosController(AlunoContext context)
+        public AlunoController(AlunoContext context)
         {
             _context = context;
         }

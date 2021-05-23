@@ -1,9 +1,5 @@
 ﻿using AlunoTeste.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlunoTeste.Data
 {
@@ -13,6 +9,8 @@ namespace AlunoTeste.Data
         { }
 
         public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Matricula> Matriculas { get; set; }
         public DbSet<Socio> Socios { get; set; }
     }
 }

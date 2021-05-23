@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlunoTeste.Models
 {
@@ -13,10 +9,12 @@ namespace AlunoTeste.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Informe a quantidade de meses")]
+        [Display(Name = "Meses")]
         public int DuracaoEmMeses { get; set; }
 
-        [Required]
+        [Required(ErrorMessage="Informe a taxa de desconto")]
+        [Display(Name = "Desconto")]
         public double TaxaDesconto { get; set; }
     }
 }

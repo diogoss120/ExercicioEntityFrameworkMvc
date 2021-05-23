@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AlunoTeste.Models
 {
@@ -31,11 +28,6 @@ namespace AlunoTeste.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Nascimento { get; set; }
-
-        public string Foto { get; set; }
-
-        public string Texto { get; set; }
-
         public Socio Socio { get; set; }
     }
 }

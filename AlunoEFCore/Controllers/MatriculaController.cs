@@ -23,19 +23,21 @@ namespace ExercicioEntityFramework.Controllers
         // GET: Matricula
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Matriculas.Include(a => a.Aluno).Include(c => c.Curso).ToListAsync());
+            var list = await _context.Alunos.Distinct().ToListAsync();
+
+            return View(list);
         }
 
         // GET: Matricula/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var matricula = await _context.Matriculas
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var matricula = _context.Matriculas.Where(m => m.AlunoId == id)
+                .Include(m => m.Curso); //.Distinct();
             if (matricula == null)
             {
                 return NotFound();
@@ -80,7 +82,7 @@ namespace ExercicioEntityFramework.Controllers
             MatriculaViewModel viewModel = new MatriculaViewModel()
             {
                 Aluno = new Aluno() { AlunoId = matricula.Aluno.AlunoId },
-                Curso = new Curso() { CursoId = matricula.Curso.CursoId},
+                Curso = new Curso() { CursoId = matricula.Curso.CursoId },
                 Alunos = _context.Alunos.ToList(),
                 Cursos = _context.Cursos.ToList(),
                 Notas = new List<Nota> { Nota.A, Nota.B, Nota.C, Nota.D, Nota.F },

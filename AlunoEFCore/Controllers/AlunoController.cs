@@ -65,7 +65,7 @@ namespace AlunoTeste.Controllers
             return View(aluno);
         }
 
-        // GET: Alunos/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,12 +86,8 @@ namespace AlunoTeste.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Sexo,Email,Nascimento")] Aluno aluno)
+        public async Task<IActionResult> Edit([Bind("AlunoId,Nome,Sexo,Email,Nascimento")] Aluno aluno)
         {
-            if (id != aluno.AlunoId)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {

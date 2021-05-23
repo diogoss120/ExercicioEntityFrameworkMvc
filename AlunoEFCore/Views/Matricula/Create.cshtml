@@ -1,4 +1,4 @@
-﻿@model AlunoTeste.Models.Matricula
+﻿@model AlunoTeste.ViewModels.MatriculaViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -16,9 +16,10 @@
             <div class="form-group">
                 <label asp-for="Aluno" class="control-label"></label>
                 <select asp-for="Aluno.AlunoId" class="form-control">
-                    @foreach (var aluno in ViewBag.viewModel.Alunos)
+                    <option value="">-----</option>
+                    @foreach (var aluno in Model.Alunos)
                     {
-                        <option value="@aluno.Id" >@aluno.Nome</option>
+                        <option value="@aluno.AlunoId" >@aluno.Nome</option>
                     }
                 </select>
             </div>
@@ -26,9 +27,10 @@
             <div class="form-group">
                 <label asp-for="Curso" class="control-label"></label>
                 <select asp-for="Curso.CursoId" class="form-control">
-                    @foreach (var curso in ViewBag.viewModel.Cursos)
+                    <option value="">-----</option>
+                    @foreach (var curso in Model.Cursos)
                     {
-                        <option value="@curso.Id">@curso.Titulo</option>
+                        <option value="@curso.CursoId">@curso.Titulo</option>
                     }
                 </select>
             </div>
@@ -36,7 +38,7 @@
             <div class="form-group">
                 <label asp-for="Nota" class="control-label"></label>
                 <select asp-for="Nota" class="form-control">
-                    @foreach (var nota in ViewBag.viewModel.Notas)
+                    @foreach (var nota in Model.Notas)
                     {
                         <option>@nota</option>
                     }

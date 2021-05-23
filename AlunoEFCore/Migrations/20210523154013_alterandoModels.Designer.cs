@@ -3,14 +3,16 @@ using System;
 using AlunoTeste.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExercicioEntityFramework.Migrations
 {
     [DbContext(typeof(AlunoContext))]
-    partial class AlunoContextModelSnapshot : ModelSnapshot
+    [Migration("20210523154013_alterandoModels")]
+    partial class alterandoModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -23,7 +23,7 @@ namespace ExercicioEntityFramework.Controllers
         // GET: Matricula
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Matriculas.ToListAsync());
+            return View(await _context.Matriculas.Include(a => a.Aluno).Include(c => c.Curso).ToListAsync());
         }
 
         // GET: Matricula/Details/5
@@ -53,8 +53,7 @@ namespace ExercicioEntityFramework.Controllers
                 Cursos = _context.Cursos.ToList(),
                 Notas = new List<Nota> { Nota.A, Nota.B, Nota.C, Nota.D, Nota.F },
             };
-            ViewBag.viewModel = viewModel;
-            return View();
+            return View(viewModel);
         }
 
         // POST: Matricula/Create
@@ -64,26 +63,31 @@ namespace ExercicioEntityFramework.Controllers
         [ValidateAntiForgeryToken] // [Bind("Id,Curso,Aluno,Nota")] 
         public async Task<IActionResult> Create([Bind("Id,Curso,Aluno,Nota")] Matricula matricula)
         {
-            Console.WriteLine("aluno id ------------------- " + matricula.Nota);
-            matricula.Aluno =  _context.Alunos.Single(a => a.AlunoId == matricula.Aluno.AlunoId);
-            matricula.Curso =  _context.Cursos.Single(c => c.CursoId == matricula.Curso.CursoId);
-            //matricula.Nota = (Nota)(int)matricula.Nota;
-            if (ModelState.IsValid)
+
+            if (matricula.Aluno.AlunoId != null && matricula.Curso.CursoId != null && matricula.Nota != null)
             {
-                _context.Add(matricula);
+                Matricula _matricula = new Matricula()
+                {
+                    AlunoId = matricula.Aluno.AlunoId,
+                    CursoId = matricula.Curso.CursoId,
+                    Nota = matricula.Nota,
+                };
+                _context.Add(_matricula);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
 
             MatriculaViewModel viewModel = new MatriculaViewModel()
             {
+                Aluno = new Aluno() { AlunoId = matricula.Aluno.AlunoId },
+                Curso = new Curso() { CursoId = matricula.Curso.CursoId},
                 Alunos = _context.Alunos.ToList(),
                 Cursos = _context.Cursos.ToList(),
                 Notas = new List<Nota> { Nota.A, Nota.B, Nota.C, Nota.D, Nota.F },
             };
             ViewBag.viewModel = viewModel;
 
-            return View(matricula);
+            return View(viewModel);
         }
 
         // GET: Matricula/Edit/5

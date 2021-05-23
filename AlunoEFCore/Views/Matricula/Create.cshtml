@@ -15,7 +15,7 @@
 
             <div class="form-group">
                 <label asp-for="Aluno" class="control-label"></label>
-                <select asp-for="Aluno.Id" class="form-control">
+                <select asp-for="Aluno.AlunoId" class="form-control">
                     @foreach (var aluno in ViewBag.viewModel.Alunos)
                     {
                         <option value="@aluno.Id" >@aluno.Nome</option>
@@ -25,7 +25,7 @@
 
             <div class="form-group">
                 <label asp-for="Curso" class="control-label"></label>
-                <select asp-for="Curso.Id" class="form-control">
+                <select asp-for="Curso.CursoId" class="form-control">
                     @foreach (var curso in ViewBag.viewModel.Cursos)
                     {
                         <option value="@curso.Id">@curso.Titulo</option>

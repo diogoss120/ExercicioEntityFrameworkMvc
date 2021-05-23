@@ -34,7 +34,7 @@ namespace ExercicioEntityFramework.Controllers
             }
 
             var curso = await _context.Cursos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CursoId == id);
             if (curso == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace ExercicioEntityFramework.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo")] Curso curso)
         {
-            if (id != curso.Id)
+            if (id != curso.CursoId)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace ExercicioEntityFramework.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CursoExists(curso.Id))
+                    if (!CursoExists(curso.CursoId))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace ExercicioEntityFramework.Controllers
             }
 
             var curso = await _context.Cursos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.CursoId == id);
             if (curso == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace ExercicioEntityFramework.Controllers
 
         private bool CursoExists(int id)
         {
-            return _context.Cursos.Any(e => e.Id == id);
+            return _context.Cursos.Any(e => e.CursoId == id);
         }
     }
 }

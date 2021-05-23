@@ -65,8 +65,8 @@ namespace ExercicioEntityFramework.Controllers
         public async Task<IActionResult> Create([Bind("Id,Curso,Aluno,Nota")] Matricula matricula)
         {
             Console.WriteLine("aluno id ------------------- " + matricula.Nota);
-            matricula.Aluno =  _context.Alunos.Single(a => a.Id == matricula.Aluno.Id);
-            matricula.Curso =  _context.Cursos.Single(c => c.Id == matricula.Curso.Id);
+            matricula.Aluno =  _context.Alunos.Single(a => a.AlunoId == matricula.Aluno.AlunoId);
+            matricula.Curso =  _context.Cursos.Single(c => c.CursoId == matricula.Curso.CursoId);
             //matricula.Nota = (Nota)(int)matricula.Nota;
             if (ModelState.IsValid)
             {

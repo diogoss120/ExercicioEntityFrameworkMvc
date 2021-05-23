@@ -7,7 +7,7 @@ namespace AlunoTeste.Models
     public class Curso
     {
         [Key]
-        public int Id { get; set; }
+        public int CursoId { get; set; }
 
         [Display(Name = "Titulo")]
         [Required(ErrorMessage="O título é obrigatório")]

@@ -7,7 +7,7 @@ namespace AlunoTeste.Models
     [Table("Alunos")]
     public class Aluno
     {
-        public int Id { get; set; }
+        public int AlunoId { get; set; }
 
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "O nome deve ser informado")]

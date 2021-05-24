@@ -23,7 +23,9 @@ namespace ExercicioEntityFramework.Controllers
         // GET: Matricula
         public async Task<IActionResult> Index()
         {
-            var list = await _context.Alunos.Distinct().ToListAsync();
+            //var list = await _context.Alunos.Distinct().ToListAsync();
+
+            var list = await _context.Matriculas.Select(m => m.Aluno).Distinct().ToListAsync();
 
             return View(list);
         }

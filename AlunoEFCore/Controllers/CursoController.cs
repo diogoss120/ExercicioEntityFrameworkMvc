@@ -136,10 +136,27 @@ namespace ExercicioEntityFramework.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var curso = await _context.Cursos.FindAsync(id);
-            _context.Cursos.Remove(curso);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var curso = await _context.Cursos.FindAsync(id);
+                _context.Cursos.Remove(curso);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToAction(nameof(Error), 
+                            new { Message = "Erro ao excluir. Este curso está ligado a uma matrícula, ele não pode ser apagado!" } );
+            }
+        }
+
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel viewModel = new ErrorViewModel()
+            {
+                Message = message,
+            };
+            return View(viewModel);
         }
 
         private bool CursoExists(int id)

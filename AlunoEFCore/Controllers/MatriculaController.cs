@@ -173,7 +173,6 @@ namespace ExercicioEntityFramework.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool MatriculaExists(int id)
         {
             return _context.Matriculas.Any(e => e.Id == id);

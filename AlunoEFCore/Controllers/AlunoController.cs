@@ -135,10 +135,26 @@ namespace AlunoTeste.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var aluno = await _context.Alunos.FindAsync(id);
-            _context.Alunos.Remove(aluno);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try{
+                var aluno = await _context.Alunos.FindAsync(id);
+                _context.Alunos.Remove(aluno);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+                return RedirectToAction(nameof(Error), 
+                            new { Message = "Erro ao excluir. Este aluno está ligado a uma matrícula, ele não pode ser apagado!" } );
+            }
+        }
+
+        public IActionResult Error(string message)
+        {
+            ErrorViewModel viewModel = new ErrorViewModel()
+            {
+                Message = message,
+            };
+            return View(viewModel);
         }
 
         private bool AlunoExists(int id)
